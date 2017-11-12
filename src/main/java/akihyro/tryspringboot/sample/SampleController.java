@@ -1,17 +1,14 @@
 package akihyro.tryspringboot.sample;
 
-import akihyro.tryspringboot.hoges.HogeData;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
-@RestController
+// thymeleafの場合は、RestControllerを使ってはならない
+//@RestController
+@Controller
 @RequestMapping("/sample")
 public class SampleController {
-    private static List<HogeData> store = new ArrayList<HogeData>();
 
     /**
      * GETのURLが、http://localhost:8080/sampleの場合。
@@ -20,10 +17,11 @@ public class SampleController {
      * @return
      */
     @RequestMapping(method = RequestMethod.GET)
+    //@RequestMapping(value = "/sample", method = RequestMethod.GET)
     public String get(Model model) {
         model.addAttribute("name", "API");
         model.addAttribute("get", "GET /sample");
         model.addAttribute("post", "POST / sample");
-        return "sample/index.html";
+        return "sample/sample";
     }
 }
